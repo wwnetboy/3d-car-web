@@ -1,0 +1,312 @@
+/* Exhibition typography, camera stage, and scroll-driven narrative. UI lives in ui.css. */
+@font-face {
+  font-family: Barlow Display;
+  src: url('/fonts/barlow-condensed-800-latin.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 58% 62%, #384448 0%, #20282b 49%, #101719 89%);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -2;
+}
+.stage canvas,
+.poster,
+.poster picture,
+.poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.stage canvas {
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  outline-offset: -5px;
+}
+body.live .stage canvas {
+  opacity: 1;
+}
+.wind-interaction {
+  position: fixed;
+  z-index: 0;
+  top: 40%;
+  bottom: 14%;
+  left: 0;
+  right: 0;
+  touch-action: none;
+  cursor: grab;
+  outline-offset: -5px;
+  user-select: none;
+}
+.wind-interaction.is-dragging {
+  cursor: grabbing;
+}
+.wind-interaction:focus {
+  outline: none;
+}
+.wind-interaction:focus-visible:not(.is-pointer-focused) {
+  outline: 1px solid var(--accent);
+}
+
+.poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.stage canvas {
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  outline-offset: -5px;
+}
+body.live .stage canvas {
+  opacity: 1;
+}
+.wind-interaction {
+  position: fixed;
+  z-index: 0;
+  top: 40%;
+  bottom: 14%;
+  left: 0;
+  right: 0;
+  touch-action: none;
+  cursor: grab;
+  outline-offset: -5px;
+  user-select: none;
+}
+.wind-interaction.is-dragging {
+  cursor: grabbing;
+}
+.wind-interaction:focus {
+  outline: none;
+}
+.wind-interaction:focus-visible:not(.is-pointer-focused) {
+  outline: 1px solid var(--accent);
+}
+.wind-view-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.wind-view-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+  pointer-events: auto;
+  color: var(--accent);
+}
+.wind-view-controls .icon {
+  width: 14px;
+  height: 14px;
+}
+.wind-touch-hint {
+  display: none;
+}
+@media (pointer: coarse) {
+  .wind-touch-hint { display: inline; }
+  .wind-mouse-hint { display: none; }
+  .wind-view-controls button { min-height: 40px; }
+}
+@media (max-aspect-ratio: 94/100) {
+  .wind-interaction {
+    top: 37%;
+    bottom: 27%;
+  }
+}
+.poster img {
+  object-fit: cover;
+  object-position: 50% var(--focus-y, 58.2%);
+}
+@media (max-aspect-ratio: 94/100) {
+  .poster img {
+    object-position: 50% var(--portrait-y, 55.2%);
+  }
+}
+#track {
+  position: relative;
+  pointer-events: none;
+  z-index: -3;
+}
+#track > div {
+  height: 100svh;
+}
+#track > div:last-child {
+  height: 100dvh;
+}
+
+.narrative {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.narrative::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    linear-gradient(90deg, rgba(9, 15, 17, 0.84), rgba(12, 17, 19, 0.42) 27%, transparent 54%),
+    linear-gradient(0deg, rgba(12, 17, 18, 0.75), transparent 19%);
+  transition: opacity 0.55s;
+}
+body.detail-shot .narrative::before {
+  opacity: 1;
+}
+.copy {
+  position: absolute;
+  top: clamp(95px, 15.3vh, 180px);
+  left: var(--gutter);
+  max-width: 48vw;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(9px);
+  transition:
+    opacity 0.38s,
+    transform 0.48s,
+    visibility 0s 0.48s;
+}
+.copy.is-current {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0.06s;
+}
+.copy:not(.hero) p {
+  opacity: 0;
+  transition: opacity 0.32s;
+}
+.copy.is-current:not(.hero) p {
+  opacity: 1;
+  transition-delay: 0.18s;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  letter-spacing: 0.08em;
+  gap: 10px;
+  white-space: nowrap;
+}
+.speedmark {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 10px;
+  margin-right: 3px;
+  transform: skewX(-28deg);
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0 30%,
+    transparent 30% 47%,
+    var(--accent) 47% 68%,
+    transparent 68% 81%,
+    var(--accent) 81% 100%
+  );
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+.hero h1 {
+  margin: clamp(13px, 2.2vh, 25px) 0 0;
+}
+.make {
+  display: block;
+  font-size: clamp(21px, 2vw, 36px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.24em;
+  padding-left: 3px;
+}
+.model-name,
+.copy h2,
+.viewer-heading h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.model-name {
+  font-size: clamp(85px, min(10.6vw, 16.3vh), 188px);
+  line-height: 0.86;
+  letter-spacing: -0.026em;
+  display: block;
+  margin: 5px 0 0 -0.038em;
+  white-space: nowrap;
+}
+.model-name i,
+.copy h2 i {
+  font: inherit;
+  font-style: normal;
+  display: inline-block;
+  transform: skewX(-10deg);
+  transform-origin: 52% 72%;
+}
+.model-name i {
+  color: var(--accent);
+  margin-left: 0.012em;
+}
+.theme-line {
+  gap: 13px;
+  margin-top: clamp(14px, 2vh, 26px);
+}
+.theme-line strong {
+  font-size: clamp(16px, 1.35vw, 24px);
+  font-weight: 550;
+  letter-spacing: 0.14em;
+}
+.divider {
+  height: 12px;
+  width: 1px;
+  background: var(--hair);
+}
+.theme-line span[lang] {
+  font-family: var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.copy p {
+  color: var(--muted);
+  max-width: 34em;
+  text-wrap: pretty;
+}
+.hero .lede {
+  margin-top: 8px;
+}
+.copy h2 {
+  font-size: clamp(65px, min(7.9vw, 14vh), 140px);
+  letter-spacing: -0.023em;
+  line-height: 0.88;
+  margin: clamp(18px, 2.6vh, 33px) 0 16px -0.035em;
+  white-space: nowrap;
+}
+.copy h3 {
+  margin-bottom: 8px;
+}
+.copy.detail {
+  top: clamp(106px, 20vh, 220px);
+  max-width: 25.6vw;
+}
+.detail h2 {
+  font-size: clamp(65px, min(7.7vw, 14vh), 137px);
+  line-height: 0.88;
+}
+.detail h2 i {
+  color: var(--accent);
+}

@@ -1,0 +1,2 @@
+numpy>=1.24,<3
+embreex==4.4.0.post1

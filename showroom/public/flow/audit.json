@@ -1,0 +1,99 @@
+{
+  "formatVersion": 4,
+  "method": "OpenFOAM kOmegaSST mean flow and conservative passive scalar transport",
+  "referenceKmh": 120,
+  "otherSpeeds": "Advection-time scaling of the 120 km/h field, not independent CFD solutions",
+  "shape": [
+    256,
+    96,
+    128
+  ],
+  "min": [
+    -5.4,
+    -0.08,
+    -2.5
+  ],
+  "max": [
+    4.7,
+    2.55,
+    2.5
+  ],
+  "step": [
+    0.039453125000000006,
+    0.02739583333333333,
+    0.0390625
+  ],
+  "channels": [
+    "traced travel time in freestream metres",
+    "traced inlet Y",
+    "traced inlet Z",
+    "body signed distance",
+    "smoke concentration",
+    "relative turbulence intensity / 0.3"
+  ],
+  "sourceSha256": "54afcf18b609f58e9d43570e4a3ac657870a54234eca04af6cad4627d381e412",
+  "geometryProxySha256": "423657730c0399509b58b93fee30f8c49795a77937b6ddec1f74a180b7dd4e36",
+  "velocitySha256": "cbab05c8fae91152e28263e71ac98a1024c83815032e6cde2c10092f718dd2f4",
+  "faceFluxSha256": "1d0198be28a82f2833388f52d01d255ddad621f9b76885538a690803dec354d4",
+  "fieldSha256": "2851149fef0dca74acf254d5e2dd845c55182c8d18cd06c75d8a15b9c381660c",
+  "bytes": 31457344,
+  "gzipBytes": 16616326,
+  "sampledFluidCells": 2941182,
+  "concentrationRange": [
+    1.47887175e-06,
+    0.84481217
+  ],
+  "volumeConcentrationRange": [
+    3.52276293e-48,
+    0.949085342
+  ],
+  "inletMaxConcentration": 0.95451701,
+  "transportResiduals": {
+    "smoke": 7.9278569e-10,
+    "age": 8.46606671e-10,
+    "inletY": 9.64994893e-10,
+    "inletZ": 9.38316718e-10
+  },
+  "timeOfFlightMetresPercentiles": [
+    5.468567848205566,
+    27.015625,
+    173.625
+  ],
+  "smokeSource": "Inlet only; no surface/contact/duct concentration multiplier",
+  "geometry": "20 mm watertight display-mesh proxy with explicit cabin closure; unresolved slits excluded",
+  "dragPredictionValidated": false,
+  "animation": "Mean CFD concentration; procedural sub-grid texture and waves are illustrative",
+  "visualCoordinates": {
+    "method": "RK2 upstream tracing in the frozen CFD velocity; diffusive mean fallback for closed/slow paths",
+    "tracedFluidVoxels": 2764421,
+    "stepMetres": 0.032,
+    "maxFreestreamMetres": 45.0,
+    "concentrationUnchanged": true,
+    "sourceFieldSha256": "e597f90c9f7867a428f4a3535d6d091b9e59da315e398f9eedfc88ec1fe91239",
+    "stepCheck": {
+      "matchedFluidVoxels": 2752670,
+      "stepComparisonMetres": [
+        0.032,
+        0.016
+      ],
+      "absoluteDifferencePercentiles": {
+        "50": [
+          0.00012111663818359375,
+          2.8192996978759766e-05,
+          3.057718276977539e-05
+        ],
+        "95": [
+          0.000957489013671875,
+          0.0004322528839111328,
+          0.0004215240478515625
+        ],
+        "99": [
+          0.0060272216796875,
+          0.0006577372550964355,
+          0.0007779598236083984
+        ]
+      },
+      "statusAgreement": 0.9985504150390625
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "vision-gt-still-photography",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "verify:driving": "node verify-driving.mjs",
+    "verify:wind-floor": "node verify-wind-floor.mjs",
+    "verify:ui": "node verify-ui.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "1.56.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0"
+  }
+}

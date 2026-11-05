@@ -1,0 +1,25 @@
+{
+  "formatVersion": 2,
+  "purpose": "Bounded optical emphasis and display-mesh exclusion; not a smoke source or physical concentration",
+  "shape": [
+    256,
+    96,
+    128
+  ],
+  "channels": [
+    "duct and outlet visibility",
+    "local confinement",
+    "display-mesh signed distance",
+    "reserved"
+  ],
+  "distanceEncoding": {
+    "bias": -0.07999999821186066,
+    "scale": 1.2799999713897705
+  },
+  "boundary": "Conservative triangle voxelization plus closed cabin; intersect its exterior with the CFD fluid region",
+  "sourceSha256": "54afcf18b609f58e9d43570e4a3ac657870a54234eca04af6cad4627d381e412",
+  "sourceMaskSha256": "c691f406635a83b4c1d2a42504f92e090a8bd60fe7f833d5a16877765760baf1",
+  "boundaryFieldSha256": "2851149fef0dca74acf254d5e2dd845c55182c8d18cd06c75d8a15b9c381660c",
+  "fieldSha256": "adc2591fdaae12b3f16859aeabe6e57c3a120327151aba05063c4e5dcfd4b637",
+  "bytes": 12582944
+}

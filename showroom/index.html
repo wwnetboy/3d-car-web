@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111618">
+  <meta name="description" content="3D汽车网站。切换不同车型，自由环绕查看车身、体验配色与行驶，并观察风洞中的气流演示。">
+  <title>3D汽车网站</title>
+  <link rel="icon" href="/mark.svg?v=2" type="image/svg+xml">
+  <link rel="preload" href="/fonts/barlow-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+<a class="skip" href="#design">跳至设计章节</a>
+  <div id="stage" class="stage" aria-label="3D汽车网站 · 汽车摄影棚">
+    <div id="poster" class="poster" aria-hidden="true">
+      <picture>
+        <source id="portrait-source" media="(max-aspect-ratio: 94/100)" srcset="/stills/reveal-p.webp?v=12">
+        <img id="still" src="/stills/reveal.webp?v=12" alt="" fetchpriority="high">
+      </picture>
+    </div>
+    <canvas id="car" tabindex="-1" aria-label="汽车三维视图。外观模式可拖动车身，驾驶席模式可转动视线。方向键和加减键也可操作。"></canvas>
+  </div>
+
+  <div id="wind-interaction" class="wind-interaction" tabindex="0" role="group" aria-label="风洞三维视图" aria-describedby="wind-view-hint" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown + - Home" hidden></div>
+
+
+
+  <div id="narrative" class="narrative">
+    <main id="captions" aria-label="3D汽车网站，设计展览">
+      <section class="copy hero is-current" data-shot="reveal" aria-labelledby="hero-title">
+        <div class="eyebrow text-body-medium"><span class="speedmark" aria-hidden="true"></span> CONCEPT SERIES</div>
+        <h1 id="hero-title"><span class="make">XIAOMI</span><span class="model-name">VISION <i>GT</i></span></h1>
+        <div class="theme-line"><strong>风塑未来</strong><span class="divider"></span><span lang="en" class="text-body-2-medium">SCULPTED BY THE WIND</span></div>
+        <div class="chapter-details">
+          <p class="detail-kicker text-body-medium">CONCEPT DESIGN / 概念设计</p>
+          <p class="lede text-body-regular lg:text-headline-regular">以风为笔，勾勒纯电概念超跑的轮廓。<br>跟随光影、气流与细节，阅读它的设计。</p>
+        </div>
+      </section>
+      <section class="copy" data-shot="design" aria-labelledby="form-title" inert>
+        <div class="eyebrow text-body-medium"><span class="speedmark"></span> FORM STUDY</div>
+        <h2 id="form-title" lang="en">FLUID <i>FORM</i></h2>
+        <div class="chapter-details">
+          <h3 class="text-title-2-medium">低掠的侧影</h3>
+          <p class="text-body-regular lg:text-headline-regular">轮拱从低矮的车鼻向后展开，两轮之间的侧裙紧贴地面。顺着这条长线看过去，车身直到尾端才向内收拢。</p>
+        </div>
+      </section>
+      <section class="copy" data-shot="canopy" aria-labelledby="canopy-title" inert>
+        <div class="eyebrow text-body-medium"><span class="speedmark"></span> CANOPY STUDY</div>
+        <h2 id="canopy-title" lang="en">TEAR<i>DROP</i></h2>
+        <div class="chapter-details">
+          <h3 class="text-title-2-medium">一滴水的弧线</h3>
+          <p class="text-body-regular lg:text-headline-regular">镜头升高，深色座舱的轮廓显现出来。水滴形座舱嵌在两侧车身曲面之间，把空间留给经过的风。</p>
+        </div>
+      </section>
+      <section class="copy" data-shot="aero" aria-labelledby="aero-title" inert>
+        <div class="eyebrow text-title-3-medium"><span class="speedmark" aria-hidden="true"></span> AERODYNAMICS / 风洞</div>
+        <h2 id="aero-title" class="wind-heading" lang="en">AIR IN <i>MOTION</i></h2>
+        <p class="wind-intro text-title-3-regular text-text-secondary"><span>观察气流与车身的关系。</span><br><span class="wind-intro-detail">调节风速，多角度查看绕流。</span></p>
+        <div id="wind-view-ui"></div>
+      </section>
+      <section class="copy detail" data-shot="wheel" aria-labelledby="wheel-title" inert>
+        <div class="eyebrow text-body-medium"><span class="speedmark"></span> DETAIL STUDY</div>
+        <h2 id="wheel-title" lang="en">ACCRETION<br><i>RIMS</i></h2>
+        <div class="chapter-details">
+          <h3 class="text-title-2-medium">涡流轮罩</h3>
+          <p class="text-body-regular lg:text-headline-regular">与胎面齐平的半透明轮罩由磁力系统保持静止。轮胎与内部叶片转动，为制动系统引入冷却气流，让外侧气流平顺掠过。</p>
+        </div>
+      </section>
+      <section class="copy detail" data-shot="lamp" aria-labelledby="lamp-title" inert>
+        <div class="eyebrow text-body-medium"><span class="speedmark"></span> DETAIL STUDY</div>
+        <h2 id="lamp-title" lang="en">CROSS<br><i>LIGHT</i></h2>
+        <div class="chapter-details">
+          <h3 class="text-title-2-medium">十字光刃</h3>
+          <p class="text-body-regular lg:text-headline-regular">横向灯带在车头外缘与纵向光线交会。灯组嵌入开口边缘，点亮时勾出前脸的深度。</p>
+        </div>
+      </section>
+      <section class="copy detail" data-shot="tail" aria-labelledby="tail-title" inert>
+        <div class="eyebrow text-body-medium"><span class="speedmark"></span> DETAIL STUDY</div>
+        <h2 id="tail-title" lang="en">REAR<br><i>HALO</i></h2>
+        <div class="chapter-details">
+          <h3 class="text-title-2-medium">风的出口</h3>
+          <p class="text-body-regular lg:text-headline-regular">一圈红光沿车尾回转。环形尾灯嵌在大截面气流出口周围，让尾部结构在暗处依然清晰可辨。</p>
+        </div>
+      </section>
+      <section class="copy" data-shot="explore" aria-labelledby="explore-title" inert>
+        <div class="eyebrow text-body-medium"><span class="speedmark"></span> EXTERIOR STUDIO</div>
+        <h2 id="explore-title" lang="en">FULL <i>CIRCLE</i></h2>
+        <div class="chapter-details">
+          <h3 class="text-title-2-medium">从车外，走进驾驶席</h3>
+          <p class="text-body-regular lg:text-headline-regular">打开双门，坐进左侧驾驶席。启动试车直道，看路面从前风挡下掠过。</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="narrative-ui"></div>
+  </div>
+
+  <div id="interface"></div>
+
+  <div id="track" aria-hidden="true"><div id="reveal"></div><div id="design"></div><div id="canopy"></div><div id="aero"></div><div id="wheel"></div><div id="lamp"></div><div id="tail"></div><div id="explore"></div></div>
+<noscript><style>.narrative,#interface,#track,.skip{display:none!important}body{overflow:auto!important}</style><main class="no-script"><h1>3D汽车网站</h1><h2>交互式汽车展示</h2><p>自由查看不同车型，体验配色、行驶与风洞演示。请启用 JavaScript 进入交互展厅。</p><p>模型《Xiaomi Vision Gt》由 <a href="https://sketchfab.com/3d-models/xiaomi-vision-gt-a464599492e94e508b999b4775141727">hartwelkisaka</a> 制作。<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p></main></noscript>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Dependencies and generated output
+node_modules/
+dist/
+.artifacts/
+coverage/
+__pycache__/
+*.py[cod]
+*.tsbuildinfo
+
+# Local credentials and deployment state
+.env
+.env.*
+!.env.example
+.edgeone/
+.tef_dist/
+.sites-runtime/
+.openai/
+
+# Editor, OS and temporary files
+.cursor/
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini

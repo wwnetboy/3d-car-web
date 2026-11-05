@@ -1,0 +1,62 @@
+{
+  "method": "refined GLB voxelization, coarse-initialized MAC projection, inlet and confined-passage transport",
+  "source": "public/models/su7-ultra.glb",
+  "vehicleId": "su7-ultra",
+  "normalization": {
+    "rotationY": 1.5707963267948966,
+    "length": 5.1,
+    "scale": 99.66594765586198,
+    "center": [
+      -0.00005311332643032074,
+      -0.000015029012502054684,
+      0.000005400273948907852
+    ]
+  },
+  "shape": [
+    256,
+    96,
+    128
+  ],
+  "min": [
+    -5.4,
+    -0.08,
+    -2.5
+  ],
+  "max": [
+    4.7,
+    2.55,
+    2.5
+  ],
+  "step": [
+    0.039453125000000006,
+    0.02739583333333333,
+    0.0390625
+  ],
+  "triangles": 747246,
+  "sourceSha256": "bb1926705185e7d91de3ec88608f040827a725f5b61279b602d8d31ad8b583d8",
+  "fieldSha256": "74b5531fee414c20dfd40934cba27bbfa84014608f40d9dbc801652f3d51325d",
+  "formatVersion": 2,
+  "iterations": 600,
+  "residualRatio": 0.001553117646370206,
+  "maxSpeed": 3.920617742283259,
+  "recoveredSamples": 1226,
+  "passageCells": 22691,
+  "cabinSeal": {
+    "method": "convex envelope of cabin glazing and upholstery",
+    "min": [
+      -1.956747055053711,
+      0.8423970341682434,
+      -0.8244873285293579
+    ],
+    "max": [
+      1.1825412511825562,
+      1.4684597253799438,
+      0.8244185447692871
+    ],
+    "cells": 25048,
+    "faces": 5854
+  },
+  "bytes": 18874432,
+  "gzipBytes": 5171554,
+  "seconds": 18.4942713
+}

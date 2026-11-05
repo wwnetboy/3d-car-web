@@ -1,0 +1,25 @@
+{
+  "name": "vision-gt-asset-preparation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare-vehicles": "node prepare-vehicles.mjs",
+    "prepare-models": "node prepare.mjs",
+    "verify-models": "node verify.mjs",
+    "verify-wheel-alignment": "node verify-wheel-alignment.mjs",
+    "verify-vehicle-flow": "node verify-vehicle-flow.mjs",
+    "prepare-su7-flow": "node flow.mjs ../../public/flow/su7-ultra su7-ultra",
+    "prepare-mclaren-flow": "node flow.mjs ../../public/flow/mclaren-vgt mclaren-vgt",
+    "prepare-flow": "node flow.mjs",
+    "verify-flow": "node cfd/verify-field.mjs",
+    "verify-contact": "node verify-contact.mjs",
+    "verify-wake": "node verify-wake.mjs",
+    "verify-potential-flow": "node verify-flow.mjs"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "meshoptimizer": "1.3.0"
+  }
+}

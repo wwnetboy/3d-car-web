@@ -1,0 +1,62 @@
+{
+  "method": "refined GLB voxelization, coarse-initialized MAC projection, inlet and confined-passage transport",
+  "source": "public/models/mclaren-vgt.glb",
+  "vehicleId": "mclaren-vgt",
+  "normalization": {
+    "rotationY": 1.5707963267948966,
+    "length": 5.1,
+    "scale": 0.8689808343600312,
+    "center": [
+      -0.15666699409484863,
+      -0.013785514049232006,
+      0
+    ]
+  },
+  "shape": [
+    256,
+    96,
+    128
+  ],
+  "min": [
+    -5.4,
+    -0.08,
+    -2.5
+  ],
+  "max": [
+    4.7,
+    2.55,
+    2.5
+  ],
+  "step": [
+    0.039453125000000006,
+    0.02739583333333333,
+    0.0390625
+  ],
+  "triangles": 272027,
+  "sourceSha256": "2c0eab5ce4bbfa861bd52fd14c09f7a1f691b48ef87301cbc553a829d0fd043a",
+  "fieldSha256": "ab8d575ffdb6b1996b1b4eac2d6855f5b5f2084689c5910b78160e916ce6b597",
+  "formatVersion": 2,
+  "iterations": 900,
+  "residualRatio": 0.001720048061136484,
+  "maxSpeed": 4.390604193706947,
+  "recoveredSamples": 905,
+  "passageCells": 29354,
+  "cabinSeal": {
+    "method": "convex envelope of cabin glazing and upholstery",
+    "min": [
+      -0.11914538592100143,
+      0.4203190505504608,
+      -0.8825206160545349
+    ],
+    "max": [
+      2.0598180294036865,
+      1.0151500701904297,
+      0.8829537630081177
+    ],
+    "cells": 12692,
+    "faces": 664
+  },
+  "bytes": 18874432,
+  "gzipBytes": 5612421,
+  "seconds": 25.3673769
+}

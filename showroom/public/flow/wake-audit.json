@@ -1,0 +1,234 @@
+{
+  "formatVersion": 1,
+  "method": "Sampled transient local-URANS passive-smoke concentration",
+  "shape": [
+    64,
+    32,
+    48
+  ],
+  "min": [
+    -5.4,
+    0.025,
+    -2.15
+  ],
+  "max": [
+    -2.3,
+    2.05,
+    2.15
+  ],
+  "frames": 26,
+  "sampleTimes": [
+    0.4,
+    0.419759036,
+    0.44,
+    0.459759036,
+    0.48,
+    0.499759036,
+    0.52,
+    0.540240964,
+    0.56,
+    0.580240964,
+    0.6,
+    0.620240964,
+    0.64,
+    0.660240964,
+    0.68,
+    0.700240964,
+    0.72,
+    0.740240964,
+    0.76,
+    0.780240964,
+    0.8,
+    0.820240964,
+    0.84,
+    0.860240964,
+    0.88,
+    0.900240964
+  ],
+  "frameRanges": [
+    [
+      0.01206902666,
+      0.732116734
+    ],
+    [
+      0.01206900053,
+      0.73211371
+    ],
+    [
+      0.01206898531,
+      0.7321107812
+    ],
+    [
+      0.01206897861,
+      0.7321081558
+    ],
+    [
+      0.01206897738,
+      0.7321057556
+    ],
+    [
+      0.01206897988,
+      0.7321037239
+    ],
+    [
+      0.01206898514,
+      0.7321019757
+    ],
+    [
+      0.01206899259,
+      0.7321005669
+    ],
+    [
+      0.0120690016,
+      0.7320995132
+    ],
+    [
+      0.0120690121,
+      0.7320987511
+    ],
+    [
+      0.01206902292,
+      0.7320983017
+    ],
+    [
+      0.0120690337,
+      0.7320981248
+    ],
+    [
+      0.01206904314,
+      0.7320982095
+    ],
+    [
+      0.01206905104,
+      0.7320985388
+    ],
+    [
+      0.01206905677,
+      0.7320990738
+    ],
+    [
+      0.01206906067,
+      0.7320998151
+    ],
+    [
+      0.01206906293,
+      0.732100703
+    ],
+    [
+      0.0120690642,
+      0.7321017563
+    ],
+    [
+      0.01206906499,
+      0.7321029025
+    ],
+    [
+      0.01206906582,
+      0.7321041762
+    ],
+    [
+      0.01206906697,
+      0.732105498
+    ],
+    [
+      0.0120690686,
+      0.7321069154
+    ],
+    [
+      0.01206907059,
+      0.7321083463
+    ],
+    [
+      0.0120690729,
+      0.7321098474
+    ],
+    [
+      0.01206907527,
+      0.732111336
+    ],
+    [
+      0.0120690777,
+      0.7321128743
+    ]
+  ],
+  "referenceKmh": 120,
+  "loopOverlapSeconds": 0.10004819631576539,
+  "loopNote": "Adjacent-frame interpolation; a bounded crossfade joins non-periodic recording ends",
+  "sourceVelocitySha256": "cbab05c8fae91152e28263e71ac98a1024c83815032e6cde2c10092f718dd2f4",
+  "sourceModelSha256": "54afcf18b609f58e9d43570e4a3ac657870a54234eca04af6cad4627d381e412",
+  "fieldSha256": "f6e3436d8a903903468f0dced433a591e0faf5cdd8facbdf26c7afda3f40752a",
+  "bytes": 5111976,
+  "gzipBytes": 3406206,
+  "scope": "Rear body / wake diagnostic, not whole-car transient aerodynamics",
+  "numericalChecks": {
+    "finite": true,
+    "courant": true,
+    "timeStep": true,
+    "concentration": true,
+    "maximumPrinciple": true,
+    "boundaryFlux": true,
+    "continuity": true
+  },
+  "engineeringValidated": false,
+  "recordVariation": {
+    "sampleMeanRange": [
+      0.34087610244750977,
+      0.34160736203193665
+    ],
+    "temporalConcentrationRms": 0.0005968472687527537,
+    "centroidSpanMetres": [
+      0.000886746433958141,
+      0.0008938148241720567,
+      0.0002099114476960372
+    ],
+    "note": "Short-record variation includes residual settling; not a measured vortex amplitude or a shedding-frequency prediction"
+  },
+  "initialAndInletConcentrationRange": [
+    0.00733424972,
+    0.745317233
+  ],
+  "volumeConcentrationRange": [
+    0.00733424972,
+    0.74526261907
+  ],
+  "turbulenceBoundingEvents": 0,
+  "timeStepCheck": {
+    "interval": [
+      0.05,
+      0.24
+    ],
+    "maxCo": [
+      0.8,
+      0.4
+    ],
+    "velocityRmsErrorMps": 0.011579908151843572,
+    "velocityRmsErrorOverFreestream": 0.00034739724455530715,
+    "concentrationRmsError": 7.572118983845686e-05,
+    "concentrationMaxError": 0.0004809315000000036,
+    "scope": "100 wake probes, identical initial/boundary conditions; temporal sensitivity only, not grid independence",
+    "checks": {
+      "velocity": true,
+      "concentrationRms": true,
+      "concentrationMax": true
+    }
+  },
+  "restart": {
+    "flowCheckpoint": "D:\\Developer\\FeiChe-3D\\showroom\\.artifacts\\cfd\\wake-local-clean\\1.03939759",
+    "initialVelocitySha256": "b86bbf2b3d8eb6734464a1c0330033ba056f4633604195c2bd71290c74b6cb94",
+    "initialSmokeSha256": "eae97f206cb489e7d71ed6c8301df8fa8837d7c2ca5efff3e75630c87b8607f0",
+    "scalarReinitialized": true,
+    "rejectedScalarCopied": false,
+    "maxCo": 0.8,
+    "reason": "Allow scalar/turbulence outflow on reversing precursor cut faces; implicit scalar diffusion; no concentration clipping",
+    "cutScalarBoundary": "inletOutlet: fixed precursor only when phi < 0, zeroGradient when phi >= 0",
+    "limitation": "Orthogonal scalar diffusion on a mildly non-orthogonal display-mesh proxy; not a spatial convergence proof"
+  },
+  "boundaryProfile": "Stationary full-car mean U/k/omega/smoke profiles; pressure outlet; no imposed oscillation",
+  "case": ".artifacts\\cfd\\wake-open",
+  "timeStepRange": [
+    0.0004484304933,
+    0.000482008622
+  ],
+  "maxCourant": 0.7993587403,
+  "maxRelativeBoundaryFluxImbalance": 1.164954970601617e-09
+}

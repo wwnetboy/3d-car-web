@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.artifacts/
+__pycache__/
+.sites-runtime/
+*.log
+.DS_Store
+
+# Tencent Cloud EdgeOne
+.env
+.edgeone/*
+.tef_dist/*

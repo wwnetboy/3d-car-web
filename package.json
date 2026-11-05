@@ -1,0 +1,10 @@
+{
+  "name": "feiche-3d",
+  "private": true,
+  "workspaces": ["showroom"],
+  "scripts": {
+    "dev": "npm --workspace showroom run dev --",
+    "build": "npm --workspace showroom run build",
+    "preview": "npm --workspace showroom run preview --"
+  }
+}
