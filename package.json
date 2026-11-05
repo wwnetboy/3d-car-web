@@ -1,5 +1,5 @@
 {
-  "name": "feiche-3d",
+  "name": "3d-car-web",
   "private": true,
   "workspaces": ["showroom"],
   "scripts": {
