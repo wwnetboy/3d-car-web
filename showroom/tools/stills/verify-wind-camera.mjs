@@ -27,7 +27,8 @@ const inspect = () => page.evaluate(async () => {
   const el = Math.asin(-direction.y) * 180 / Math.PI
   const inlet = []
   for (const y of [0, 2.55]) for (const z of [-2.14, 2.14]) {
-    inlet.push(new THREE.Vector3(4.36, y, z).project(camera).x)
+    const corner = new THREE.Vector3(13.66, y, z)
+    if (corner.clone().applyMatrix4(camera.matrixWorldInverse).z < 0) inlet.push(corner.project(camera).x)
   }
   return { az, el, inlet, position: camera.position.toArray(), fov: camera.fov }
 })
@@ -38,8 +39,8 @@ const key = async (key, count = 1) => {
 }
 const safe = async () => {
   const view = await inspect()
-  assert(view.az >= -0.01 && view.az <= 35.01, JSON.stringify(view))
-  assert(view.el >= 2.99 && view.el <= 25.01, JSON.stringify(view))
+  assert(view.az >= -40.01 && view.az <= 50.01, JSON.stringify(view))
+  assert(view.el >= 2.99 && view.el <= 45.01, JSON.stringify(view))
   assert(Math.max(...view.inlet) <= -1.039, 'Inlet fade must stay outside viewport: ' + JSON.stringify(view))
   return view
 }
@@ -63,6 +64,17 @@ try {
       await page.locator('#wind-interaction').waitFor({ state: 'visible' })
       await key('Home')
       const initial = await safe()
+      if (id === 'vision-gt' && viewport.width === 1440) {
+        const box = await page.locator('#wind-interaction').boundingBox()
+        const y = box.y + box.height * 0.7
+        await page.mouse.move(600, y)
+        await page.mouse.down()
+        await page.mouse.move(850, y, { steps: 12 })
+        await page.mouse.move(250, y, { steps: 24 })
+        await page.mouse.up()
+        assert(Math.abs((await safe()).az + 40) < 0.01, 'Mouse drag reaches the widened rear-side limit')
+        await key('Home')
+      }
       await key('-', 12)
       assert.deepEqual((await inspect()).position, initial.position, 'Zoom out stops at default')
       await key('+', 12)
@@ -71,8 +83,13 @@ try {
       for (const horizontal of ['ArrowLeft', 'ArrowRight']) {
         await key(horizontal, 12)
         for (const vertical of ['ArrowUp', 'ArrowDown']) {
-          await key(vertical, 8)
-          await safe()
+          await key(vertical, 12)
+          const limit = await safe()
+          assert(Math.abs(limit.az - (horizontal === 'ArrowLeft' ? -40 : 50)) < 0.01, 'Full horizontal sweep remains available')
+          assert(Math.abs(limit.el - (vertical === 'ArrowUp' ? 45 : 3)) < 0.01, 'Full vertical sweep remains available')
+          if (id === 'vision-gt' && viewport.width === 1440) {
+            await page.screenshot({ path: fileURLToPath(new URL(`${horizontal}-${vertical}.png`, output)) })
+          }
         }
       }
       await page.locator('#wind-interaction').dispatchEvent('wheel', { deltaY: 160, deltaMode: 0 })

@@ -4,7 +4,7 @@ import smokeVertex from './shaders/windSmoke.vert?raw'
 import smokeFragment from './shaders/windSmoke.frag?raw'
 import { driveSpeedRange } from './story'
 
-import { createWindField, flowDuration, flowMax, flowMin, windCells } from './windField'
+import { createWindField, flowDuration, flowMax, flowMin, windCells, windInletX } from './windField'
 import { createWakePlayback } from './windWake'
 
 // Trilinear filtering turns this tiny, tileable lattice into a continuous
@@ -103,6 +103,7 @@ export function createWindSmoke(lite: boolean) {
     uFlowScale: { value: field.scale },
     uFlowBias: { value: field.bias },
     uFlowMin: { value: flowMin },
+    uInletX: { value: windInletX },
     uFlowSize: { value: flowMax.clone().sub(flowMin) },
     uNoise: { value: noise },
     uBodyDepth: { value: body.depth },

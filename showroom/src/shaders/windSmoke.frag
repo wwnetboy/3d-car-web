@@ -14,6 +14,7 @@ uniform sampler3D uNoise;
 uniform sampler2D uBodyDepth;
 uniform vec3 uFlowMin;
 uniform vec3 uFlowSize;
+uniform float uInletX;
 uniform vec4 uDepthViewport;
 uniform vec2 uDepthProjection;
 uniform float uTravel;
@@ -57,6 +58,9 @@ float waveFilter(float frequency) {
 vec4 medium(vec3 p) {
     vec3 uvw = (p-uFlowMin)/uFlowSize;
     vec4 flow = texture(uFlow,uvw)*uFlowScale+uFlowBias;
+    // Extend the inlet's constant cross-section with continuous material time.
+    // Clamp-to-edge sampling preserves the solved inlet concentration/labels.
+    flow.x -= max(0.,p.x-(uFlowMin.x+uFlowSize.x));
     // The sampled CFD grid can miss thin glass, skin and floor panels. The
     // conservative mesh boundary also excludes these surfaces at every angle;
     // the camera depth pass separately stops rays at the exact visible mesh.
@@ -107,7 +111,7 @@ vec4 medium(vec3 p) {
     float surfaceFade = smoothstep(.003,.028,distance);
     float leading = smoothstep(-.12,.65,uHead-flow.x);
     float trailing = uTail<0. ? 1. : smoothstep(-.15,.65,flow.x-uTail);
-    float inletFade = smoothstep(0.,.34,uFlowMin.x+uFlowSize.x-p.x);
+    float inletFade = smoothstep(0.,.34,uInletX-p.x);
     float outletFade = smoothstep(0.,.85,p.x-uFlowMin.x);
     float edgeFade = 1.-smoothstep(1.75,2.14,abs(p.z));
     // The conservative concentration still comes solely from the inlet solve.

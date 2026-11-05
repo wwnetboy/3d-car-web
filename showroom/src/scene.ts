@@ -6,7 +6,7 @@ import { Cockpit } from './cockpit'
 import { CarLights } from './carLights'
 import { reflectDrivingArches, studioEnvironment, studioReflection, studioRoom } from './studio'
 import { createWindSmoke } from './windSmoke'
-import { flowMax } from './windField'
+import { flowMax, windInletX } from './windField'
 import { VehicleRig, type VehiclePhase } from './vehicle'
 import { clamp, driveSpeedRange, mix, parked, presets, segment, shots, smooth, type VehicleSettings } from './story'
 
@@ -31,7 +31,9 @@ const drivingLens = { distance: 7, width: 6.65, portraitWidth: 6.15, x: 0.535 }
 // At the viewport edge: orbit in degrees and framing shift as a fraction of the film gate.
 const storyHover = { az: 10, el: 3, frameX: 0.018, portraitFrameX: 0.008, frameY: 0.012 }
 const windShot = shots.find((shot) => shot.id === 'aero')!
-const windViewLimits = { minAz: 0, maxAz: 35, minEl: 3, maxEl: 25, minZoom: 0.55, maxZoom: 1 }
+// Allow a broad sweep across the flank and both three-quarter views. The
+// inlet framing below keeps the smoke source hidden throughout this range.
+const windViewLimits = { minAz: -40, maxAz: 50, minEl: 3, maxEl: 45, minZoom: 0.55, maxZoom: 1 }
 const copyPose = (): Pose => ({
   az: 0,
   el: 0,
@@ -544,6 +546,7 @@ export class Showroom {
       const windEl = mobile ? windShot.mobile[1] : windShot.el
       p.az += (clamp(windAz + this.windOrbit.az, windViewLimits.minAz, windViewLimits.maxAz) - windAz) * p.wind
       p.el += (clamp(windEl + this.windOrbit.el, windViewLimits.minEl, windViewLimits.maxEl) - windEl) * p.wind
+      p.y -= 0.07 * smooth(clamp((p.el - windEl) / (windViewLimits.maxEl - windEl))) * p.wind
       if (!reduced) {
         const follow = 1 - p.wind
         p.az += this.hover.x * storyHover.az * follow
@@ -606,7 +609,7 @@ export class Showroom {
       this.camera.updateMatrixWorld()
       const corner = new THREE.Vector3()
       for (const y of [0, flowMax.y]) for (const z of [-2.14, 2.14]) {
-        corner.set(flowMax.x - 0.34, y, z).applyMatrix4(this.camera.matrixWorldInverse)
+        corner.set(windInletX - 0.34, y, z).applyMatrix4(this.camera.matrixWorldInverse)
         if (corner.z < 0) span = Math.min(span, -corner.x * p.dist / (-corner.z * (p.x + 0.02)))
       }
     }

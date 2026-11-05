@@ -4,6 +4,9 @@ import * as THREE from 'three'
 // conservative smoke concentration and relative turbulence intensity.
 export const flowMin = new THREE.Vector3(-5.4, -.08, -2.5)
 export const flowMax = new THREE.Vector3(4.7, 2.55, 2.5)
+// Continue the uniform incoming stream beyond the solved domain for viewing.
+// The CFD grid and its vehicle interaction remain at their original bounds.
+export const windInletX = 14
 export const flowDuration = 1024
 
 export async function fetchField(path: string, signal: AbortSignal, revision = 6) {
@@ -122,9 +125,16 @@ export function createWindField() {
 
 export function windCells(lite: boolean) {
   const count = lite ? 20 : 28
-  return Array.from({ length: count }, (_, i) => {
+  const cells = Array.from({ length: count }, (_, i) => {
     const low = new THREE.Vector3(THREE.MathUtils.lerp(flowMin.x, flowMax.x, i / count), .025, -2.15)
     const high = new THREE.Vector3(THREE.MathUtils.lerp(flowMin.x, flowMax.x, (i + 1) / count), 2.2, 2.15)
     return { low, high, center: low.clone().lerp(high, .5) }
   })
+  const upstreamCount = lite ? 19 : 26
+  for (let i = 0; i < upstreamCount; i++) {
+    const low = new THREE.Vector3(THREE.MathUtils.lerp(flowMax.x, windInletX, i / upstreamCount), .025, -2.15)
+    const high = new THREE.Vector3(THREE.MathUtils.lerp(flowMax.x, windInletX, (i + 1) / upstreamCount), 2.2, 2.15)
+    cells.push({ low, high, center: low.clone().lerp(high, .5) })
+  }
+  return cells
 }
